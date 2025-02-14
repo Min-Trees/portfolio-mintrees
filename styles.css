@@ -1,4 +1,56 @@
 /* Reset mặc định */
+body {
+    opacity: 0;
+    animation: fadeIn 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1, .hero h2 {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 1s ease-in-out forwards;
+    animation-delay: 0.3s;
+}
+
+.hero p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInText 1s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -297,58 +349,211 @@ p {
 }
 
 /* Responsive */
+/* ============ Responsive for Mobile ============ */
 @media (max-width: 768px) {
+
+    .hero .content {
+        max-width: 110%;
+    }
+
+    /* Điều chỉnh kích thước chữ nhỏ lại */
+    .hero h1 {
+        font-size: 28px;
+        white-space: normal; /* Cho phép chữ tự xuống dòng */
+    }
+
+    .hero h2 {
+        font-size: 18px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        max-width: 95%;
+        line-height: 1.6; /* Tăng khoảng cách giữa các dòng để dễ đọc */
+    }
     .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 150px;
+        padding-top: 120px; /* Tăng thêm khoảng cách trên mobile */
     }
 
-    .content {
-        max-width: 100%;
+    .image {
+        padding-top: 120px;
+        width: 220px;
+        height: 220px;
+    }
+    /* Header */
+    header {
+        padding: 10px 20px;
     }
 
-    .image img {
-        width: 150px;
-    }
-
-    .skills-container {
-        grid-template-columns: repeat(3, minmax(80px, 1fr));
-    }
-
-    .skill-card {
-        width: 80px;
-        height: 80px;
-    }
-
-    .skill-card img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .skill-card p {
-        font-size: 12px;
-    }
-
+    /* ===== MENU: Ẩn menu và thay bằng dấu ba gạch ☰ ===== */
     .nav-links {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        background: #1e293b;
+        height: 100vh;
+        background: rgba(30, 41, 59, 0.95); /* Nền mờ đẹp */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        padding: 10px;
+        gap: 20px;
+        z-index: 1000;
     }
 
     .nav-links.active {
         display: flex;
     }
 
-    .menu-toggle {
-        display: block;
+    .nav-links li {
+        list-style: none;
+    }
+
+    .nav-links li a {
         font-size: 24px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+        color: #38bdf8;
+    }
+
+    .close-menu {
+        display: none;
+        font-size: 32px;
+        color: #fff;
         cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .nav-links.active .close-menu {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        white-space: nowrap; /* Giữ chữ không xuống hàng */
+    }
+
+    .hero h2 {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .hero p {
+        font-size: 14px;
+        max-width: 95%;
+    }
+
+    /* Dấu ba gạch ☰ */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        cursor: pointer;
+        color: #fff;
+        background: transparent;
+        border: none;
+        z-index: 1001;
+    }
+
+    /* Hero Section - Đặt Avatar lên trên */
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    /* Avatar lớn hơn, nằm trên */
+    .image {
+        order: -1; /* Đẩy avatar lên trên */
+        width: 240px;
+        height: 240px;
+        margin-bottom: 15px;
+    }
+
+    .image img {
+        width: 200px;
+        height: 200px;
+        /* border: 6px solid #38bdf8; */
+    }
+
+    .image::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    /* Điều chỉnh kích thước text */
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        max-width: 95%;
+    }
+
+    /* Căn chỉnh icon social giữa nút Download CV */
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .social-icons a {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    /* Nút Download CV full width */
+    .btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+    }
+}
+
+.hero h1, .hero h2 {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+    .close-menu {
+        display: none !important;
     }
 }
